@@ -24,7 +24,7 @@ pipeline {
 		stage('Read Module in POM'){
             steps {
                 script {
-                  sh label: '', script: "groovy /opt/scripts/pom_parser.groovy pom.xml"
+                  sh label: '', script: "sudo groovy /opt/scripts/pom_parser.groovy pom.xml"
                   loadProperties() 				  
                } 
             }
