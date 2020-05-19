@@ -1,5 +1,5 @@
 def loadProperties() {
-    properties = readProperties file: 'pom_xml.properties
+    properties = readProperties file: 'pom_xml.properties'
 }	
 
 def toSmallCase(String str) {
