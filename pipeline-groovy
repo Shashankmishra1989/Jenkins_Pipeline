@@ -52,12 +52,15 @@ pipeline {
             }
          }
          stage ('Push Docker image to HUB') {
+	  environment {
+	      versionName = "${properties.version}".toLowerCase()
+	      }
               steps {  
                  withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerpwd')]) {
                     sh "sudo docker login -u rojha63 -p ${dockerpwd}"
                  }   
                 echo '${versionName}'
-		sh 'sudo docker push rojha63/my-app:"${properties.version}"'
+		sh 'sudo docker push rojha63/my-app:${properties.version}'
                 echo 'Docker image build.'
            }
            }
