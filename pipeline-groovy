@@ -42,9 +42,10 @@ pipeline {
             }
             }
          stage ('Build Docker image') {
+	      versionName = "${properties.version}".toLowerCase()
              steps {
                  sh 'pwd'
-                 sh 'sudo docker build -f /var/jenkins_home/workspace/Pipeline_test/Dockerfile -t rojha63/my-app:14.0.0 .'
+                 sh 'sudo docker build -f /var/jenkins_home/workspace/Pipeline_test/Dockerfile -t rojha63/my-app:${versionName} .'
                 echo 'Docker image build.'
             }
          }
@@ -53,7 +54,7 @@ pipeline {
                  withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerpwd')]) {
                     sh "sudo docker login -u rojha63 -p ${dockerpwd}"
                  }   
-                sh 'sudo docker push rojha63/my-app:11.0.0'
+                sh 'sudo docker push rojha63/my-app:${versionName}'
                 echo 'Docker image build.'
            }
            }
