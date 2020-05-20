@@ -56,7 +56,7 @@ pipeline {
                  withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerpwd')]) {
                     sh "sudo docker login -u rojha63 -p ${dockerpwd}"
                  }   
-                sh 'sudo docker push rojha63/my-app:${properties.version}'
+                sh 'sudo docker push rojha63/my-app:"${properties.version}"'
                 echo 'Docker image build.'
            }
            }
